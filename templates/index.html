@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% from "macros.html" import item_list_group as md %}
+
+
+{% block title %}
+    豆瓣微信小程序
+{% endblock %}
+
+{% block body %}
+    {{ md(module_name="电影", items=movies, category=1) }}
+    {{ md(module_name="电视剧", items=tvs, category=2) }}
+{% endblock %}
+
+

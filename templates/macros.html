@@ -1,0 +1,36 @@
+{% macro movie_detail(img_url, movie_name, rating) %}
+    <div class="item-group">
+        <img src="{{ img_url }}" alt="" class="thumbnail">
+        <p class="item-title">{{ movie_name }}</p>
+        <p class="item-rating">
+            {% set lights= ((rating|int)/2)|int %}
+            {% set half = ((rating|int)%2) %}
+            {% set grays = 5 - lights - half %}
+            {% for i in range(0,lights) %}
+                <img src="{{ url_for("static",filename="icon/start.png") }}">
+            {% endfor %}
+            {% for j in range(0,half) %}
+                <img src="{{ url_for("static",filename="icon/staro.png") }}">
+            {% endfor %}
+            {% for k in range(0, grays) %}
+                <img src="{{ url_for("static",filename="icon/star-o.png") }}">
+            {% endfor %}
+            {{ rating }}
+        </p>
+    </div>
+{% endmacro %}
+
+{% macro item_list_group(module_name, items, category=category) %}
+    <div class="item-list-group">
+        <div class="item-list-top">
+            <span class="module-title">{{ module_name }}</span>
+            <a href="{{ url_for('item_list', category=category) }}" class="more-btn">更多</a>
+        </div>
+        <div class="list-group">
+            {% for movie in items %}
+                {{ movie_detail(movie.img_url, movie.movie_name, movie.movie_score) }}
+            {% endfor %}
+        </div>
+    </div>
+
+{% endmacro %}
