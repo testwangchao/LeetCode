@@ -5,7 +5,7 @@ from sqlalchemy.orm import relationship, backref
 from datetime import datetime
 
 '''
-ORM删除
+三种排序方式
 '''
 HOSTNAME = "127.0.0.1"
 PORT = 3306
